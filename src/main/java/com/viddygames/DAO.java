@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class DAO {
 
-	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+	static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost:3306/?user=root&autoReconnect=true&useSSL=false";
 	static final String USER = "root";
 	static final String PASSWORD = "sesame";
@@ -65,4 +65,29 @@ public class DAO {
 
 	} // readFromDB
 
+	public static void writeToDB(VideoGame game) {
+		VideoGame gameToAdd = new VideoGame();
+
+		gameToAdd = game;
+		connectToDB();
+
+		try {
+			PREP_STMT = CONN.prepareStatement(insertToDB);
+			PREP_STMT.setString(1, gameToAdd.getGameTitle());
+			PREP_STMT.setString(2, gameToAdd.getGameGenre());
+			PREP_STMT.setString(3, gameToAdd.getGameConsole());
+			PREP_STMT.setString(4, gameToAdd.getGameDeveloper());
+			PREP_STMT.setString(5, gameToAdd.getGamePublisher());
+			PREP_STMT.setString(6, gameToAdd.getGameReleaseDate());
+			PREP_STMT.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	} // writeToDB
+
+	private static String insertToDB = "INSERT INTO `video_games`.`video_games`"
+			+ " (`video_game_title`, `video_game_genre`, `video_game_console`, `video_game_developer`, `video_game_publisher`, `video_game_release_date`) "
+			+ "VALUES (?, ?, ?, ?, ?, ?);";
 } // class
