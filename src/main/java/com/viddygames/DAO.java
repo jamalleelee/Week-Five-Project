@@ -55,7 +55,7 @@ public class DAO {
 			}
 			for (VideoGame videoGame : videoGamesInMyList) {
 
-				System.out.println(videoGame);
+				// System.out.println(videoGame);
 
 			}
 
@@ -63,6 +63,6 @@ public class DAO {
 			e.printStackTrace();
 		}
 
-	} //readFromDB
+	} // readFromDB
 
 } // class
