@@ -1,6 +1,7 @@
 package com.viddygamesservlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -52,8 +53,8 @@ public class AddGameToDB extends HttpServlet {
 		addGameToDB.setGameReleaseDate(request.getParameter("release_date"));
 
 		DAO.writeToDB(addGameToDB);
-		
-		request.getRequestDispatcher("index.html").forward(request, response);
+
+		request.getRequestDispatcher("JSPView.jsp").forward(request, response);
 	}
 
 }
